@@ -20,7 +20,35 @@ class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes =[Quote('ali', 'i love u'),
     Quote( 'ali','i love u'),
     Quote('ali','i love u')];
+Widget quoteTemplate(quote){
+return Card(
+margin: EdgeInsets.fromLTRB(16,16,16,0),
+  child: Padding(
+    padding: const EdgeInsets.all(12.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Text(
+          quote.text,
+          style: TextStyle(
+            fontSize: 18,
+            color:Colors.amber,
+          ),
+        ),
+        SizedBox(height: 6,),
+        Text(
+          quote.authors,
+          style: TextStyle(
+            fontSize: 14,
+            color:Colors.amber,
+          ),
+        )
+      ],
+    ),
+  ),
+);
 
+}
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -43,8 +71,8 @@ class _QuoteListState extends State<QuoteList> {
        body:Column(
 
          children: quotes.map((quote) {
-           Padding:
-           return Text('${quote.authors}-${quote.text} ');
+
+           return quoteTemplate(quote);
      }
          ).toList(),
        )
