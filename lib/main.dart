@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
+import  'quote.dart';
 void main() {
   runApp(MaterialApp(
-    home:Ninjacard()
+    home:QuoteList()
 
 
 
@@ -11,92 +11,43 @@ void main() {
   ));
 }
 
- class Ninjacard extends StatefulWidget{
+ class QuoteList extends StatefulWidget{
   @override
-  State<Ninjacard> createState() => _NinjacardState();
+  State<QuoteList> createState() => _QuoteListState();
 }
 
-class _NinjacardState extends State<Ninjacard> {
-  int ninja =0;
+class _QuoteListState extends State<QuoteList> {
+  List<Quote> quotes =[Quote('ali', 'i love u'),
+    Quote( 'ali','i love u'),
+    Quote('ali','i love u')];
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-       backgroundColor: Colors.grey[900],
+       backgroundColor: Colors.grey[200],
        appBar: AppBar(
-         title: Text('Ninja card id'),
+         title: Text('Awesome Quotes'),
          centerTitle: true,
-         backgroundColor: Colors.grey[850],
+         backgroundColor: Colors.redAccent,
          elevation: 0,
        ),
        floatingActionButton: FloatingActionButton(
          onPressed: (){
            setState(() {
-             ninja++;
+            
            });
 
            },
          child:Icon(Icons.add_circle_outline),backgroundColor: Colors.pink,
        ),
-       body: Padding(
-         padding: EdgeInsets.fromLTRB(30 , 40, 30, 0),
-         child: Column(
-           crossAxisAlignment: CrossAxisAlignment.start,
-           children:<Widget>[
-             Center(
-               child: CircleAvatar(
-                 backgroundImage: AssetImage('assets/4.jpg'),
-                 radius: 50,
-               ),
-             ),
-             Divider(
-               height: 90,
-               color: Colors.deepPurpleAccent,
-             ),
-             Text('NAME',style: TextStyle(
-               color: Colors.grey,
-               letterSpacing: 2,
+       body:Column(
 
-             ),),
-             SizedBox(height: 10),
-             Text('ali',style: TextStyle(
-               color: Colors.amberAccent[200],
-               letterSpacing: 2,
-               fontSize: 28,
-               fontWeight: FontWeight.bold,
-
-             ),),
-             SizedBox(height: 30),
-             Text('number of level',style: TextStyle(
-               color: Colors.grey,
-               letterSpacing: 2,
-
-             ),),
-             SizedBox(height: 10),
-             Text('$ninja',style: TextStyle(
-               color: Colors.amberAccent[200],
-               letterSpacing: 2,
-               fontSize: 28,
-               fontWeight: FontWeight.bold,
-
-             ),),
-             SizedBox(height: 30),
-Row(
-  children: <Widget>[
-    Icon(
-      Icons.email,color: Colors.grey[400],
-    ),      SizedBox(width: 5),
-    Text('alikamelkarnib@outlook.com',
-    style: TextStyle(
-      color: Colors.grey[400],
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-      letterSpacing: 2,
-    ))
-  ],
-)
-           ],
-         ),
-       ),
+         children: quotes.map((quote) {
+           Padding:
+           return Text('${quote.authors}-${quote.text} ');
+     }
+         ).toList(),
+       )
      );
    }
 }
